@@ -7,9 +7,9 @@ import { generateToken } from "../utils/jwtUtils.js";
 
 export const register = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password, role, phone } = req.body;
 
-    if (!name || !email || !password || !role) {
+    if (!name || !email || !password || !role || !phone) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
@@ -18,7 +18,7 @@ export const register = async (req, res) => {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    const userId = await createUser({ name, email, password, role });
+    const userId = await createUser({ name, email, password, role, phone });
 
     res.status(201).json({
       message: "User registered successfully",
@@ -56,6 +56,7 @@ export const login = async (req, res) => {
         name: user.name,
         email: user.email,
         role: user.role,
+        phone: user.phone,
       },
     });
   } catch (error) {
