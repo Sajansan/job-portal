@@ -6,6 +6,7 @@ import companyRoutes from "./routes/companyRoutes.js";
 import jobRoutes from "./routes/jobRoutes.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
 import skillRoutes from "./routes/skillRoutes.js";
+import applicationRoutes from "./routes/applicationRoutes.js";
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use("/api/categories", categoryRoutes);
 app.use("/api/skills", skillRoutes);
 
 app.use("/api/auth", authRoutes);
+app.use("/api/applications", applicationRoutes);
 
 app.get("/", (req, res) => {
   res.json({ message: "Job Portal API running 🚀" });
